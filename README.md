@@ -14,22 +14,32 @@
 
 ## 安装
 
-### 方式一：Claude Code CLI 安装（推荐）
+### 方式一：当前会话加载（推荐）
 
 ```bash
-claude plugin add github:tanweai/wooyun-legacy
+git clone https://github.com/tanweai/wooyun-legacy.git
+claude --plugin-dir ./wooyun-legacy
 ```
 
-安装完成后，Claude Code 会在检测到安全相关任务时自动加载此插件。
+每次启动 Claude Code 时加 `--plugin-dir` 参数即可。插件会在检测到安全相关任务时自动激活。
 
-### 方式二：手动安装
+### 方式二：持久安装
+
+将插件目录放到 Claude Code 的插件搜索路径下：
 
 ```bash
-# 克隆仓库
-git clone https://github.com/tanweai/wooyun-legacy.git
+git clone https://github.com/tanweai/wooyun-legacy.git ~/.claude-personal/plugins/wooyun-legacy
+```
 
-# 从本地路径安装
-claude plugin add ./wooyun-legacy
+之后每次启动 Claude Code 都会自动加载此插件。
+
+### 方式三：通过 Marketplace 安装
+
+如果你已经添加了包含此插件的 marketplace：
+
+```bash
+# 在 Claude Code 中
+/plugin install wooyun-legacy@<marketplace-name>
 ```
 
 ### 验证安装
@@ -45,7 +55,11 @@ claude plugin add ./wooyun-legacy
 ### 卸载
 
 ```bash
-claude plugin remove wooyun-legacy
+# 如果是持久安装
+rm -rf ~/.claude-personal/plugins/wooyun-legacy
+
+# 如果是 marketplace 安装
+claude plugin uninstall wooyun-legacy
 ```
 
 ## 快速上手
